@@ -98,9 +98,7 @@ function CollectionCard({ collection }: Props) {
               onClick={() => setShowCreateModal(true)}
             >
               <p>There are no tasks yet:</p>
-              <span className={cn("text-sm bg-clip-text text-transparent")}>
-                Create one
-              </span>
+              Create one
             </Button>
           )}
           {tasks.length > 0 && (
