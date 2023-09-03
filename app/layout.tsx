@@ -14,12 +14,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  pageProps,
 }: {
   children: React.ReactNode;
+  pageProps: any;
 }) {
   return (
     <ClerkProvider
+      {...pageProps}
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      key={process.env.CLERK_SECRET_KEY}
     >
       <html lang="en">
         <body className={inter.className}>
