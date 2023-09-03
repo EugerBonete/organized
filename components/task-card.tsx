@@ -3,7 +3,7 @@ import { Task } from "@prisma/client";
 import React, { useTransition } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { cn, getDaysBetweenDates } from "@/lib/utils";
 import { setTaskToDone } from "@/actions/task";
 import { useRouter } from "next/navigation";
 
@@ -20,6 +20,7 @@ function getExpirationColor(expiresAt: Date) {
 function TaskCard({ task }: { task: Task }) {
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
+
   return (
     <div className="flex gap-2 items-start">
       <Checkbox
@@ -37,20 +38,25 @@ function TaskCard({ task }: { task: Task }) {
       <label
         htmlFor={task.id.toString()}
         className={cn(
-          "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 decoration-1 dark:decoration-white",
+          "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 decoration-1 dark:decoration-white w-full",
           task.done && "line-through"
         )}
       >
         {task.content}
         {task.expiresAt && (
-          <p
+          <div
             className={cn(
-              "text-xs text-neutral-500 dark:text-neutral-400",
+              "text-xs text-neutral-500 dark:text-neutral-400 flex justify-between items-center",
               getExpirationColor(task.expiresAt)
             )}
           >
-            {format(task.expiresAt, "dd/MM/yyyy")}
-          </p>
+            <div>{format(task.expiresAt, "dd/MM/yyyy")}</div>
+            <div>{`${getDaysBetweenDates(task.expiresAt, new Date())} ${
+              getDaysBetweenDates(task.expiresAt, new Date()) === 1
+                ? "day"
+                : "days"
+            } left`}</div>
+          </div>
         )}
       </label>
     </div>
