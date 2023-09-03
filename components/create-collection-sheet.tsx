@@ -9,7 +9,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormField, FormItem, FormLabel } from "./ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { useForm } from "react-hook-form";
 import {
   createCollectionSchema,
@@ -22,6 +30,15 @@ import { ReloadIcon } from "@radix-ui/react-icons";
 import { createCollection } from "@/actions/collection";
 import { useRouter } from "next/navigation";
 import { toast } from "./ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
+import { GoalColor, GoalTypes } from "@/lib/constants";
 
 interface Props {
   open: boolean;
@@ -68,18 +85,61 @@ export default function CreateCollectionSheet({ open, onOpenChange }: Props) {
         <SheetHeader>
           <SheetTitle>Add new collection</SheetTitle>
           <SheetDescription>
-            Collections are a way to group your tasks.
+            Collections are a way to group your goals.
           </SheetDescription>
         </SheetHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 flex flex-col"
+          >
             <FormField
               name="name"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
-                  <Input placeholder="Name your collection" {...field} />
+                  <Input placeholder="" {...field} />
+                  <FormDescription>Name your goal / target</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Type</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={(color: string) => field.onChange(color)}
+                    >
+                      <SelectTrigger
+                        className={cn(
+                          "w-full h-8 text-white",
+                          GoalTypes[field.value as GoalColor]
+                        )}
+                      >
+                        <SelectValue
+                          placeholder="Yearly"
+                          className="w-full h-8"
+                        />
+                      </SelectTrigger>
+                      <SelectContent className="w-full">
+                        {Object.keys(GoalTypes).map((goal) => (
+                          <SelectItem key={goal} value={goal}>
+                            {capitalizeFirstLetter(goal)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormDescription>
+                    Select how long your goal should end.
+                  </FormDescription>
+                  <FormMessage />
                 </FormItem>
               )}
             />

@@ -8,7 +8,7 @@ import { currentUser } from "@clerk/nextjs";
 
 export default async function Home() {
   return (
-    <div className="flex gap-10">
+    <div className="flex gap-10 items-start">
       <WelcomeMsg />
       <CollectionList />
     </div>
@@ -28,6 +28,9 @@ async function WelcomeMsg() {
       </h1>
 
       <div className="flex flex-col gap-2">
+        <Button variant="outline" className="bg-accent">
+          All
+        </Button>
         <Button variant="outline">Daily</Button>
         <Button variant="outline">Monthly</Button>
         <Button variant="outline">Yearly</Button>
@@ -42,6 +45,9 @@ async function CollectionList() {
     return <div>error</div>;
   }
   const collection = await prisma.collection.findMany({
+    include: {
+      task: true,
+    },
     where: {
       userId: user?.id,
     },
@@ -52,10 +58,8 @@ async function CollectionList() {
       <div className="w-full flex flex-col items-center justify-center gap-5">
         <Alert>
           <SadFace />
-          <AlertTitle>There are no collections yet.</AlertTitle>
-          <AlertDescription>
-            Create a collection to get started
-          </AlertDescription>
+          <AlertTitle>There are no goals created yet.</AlertTitle>
+          <AlertDescription>Create a goal to get started</AlertDescription>
         </Alert>
         <CreateCollection />
       </div>
@@ -63,7 +67,7 @@ async function CollectionList() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-5">
+    <div className="w-full flex flex-col items-start justify-center gap-5">
       <CreateCollection />
       <div className="flex flex-col gap-4 w-full">
         {collection.map((collection) => (

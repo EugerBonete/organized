@@ -15,6 +15,7 @@ export const createCollection = async (form: createCollectionSchemaType) => {
     data: {
       name: form.name,
       userId: user.id,
+      type: form.type,
     },
   });
 };

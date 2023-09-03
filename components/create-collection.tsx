@@ -10,7 +10,7 @@ export default function CreateCollection() {
   return (
     <>
       <Button onClick={() => setOpen((prev) => !prev)} className="w-full ">
-        Create Collection
+        Create a Goal
       </Button>
 
       <CreateCollectionSheet open={open} onOpenChange={handleOpenChange} />
