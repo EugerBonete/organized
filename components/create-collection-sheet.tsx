@@ -20,22 +20,45 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { createCollection } from "@/actions/collection";
+import { useRouter } from "next/navigation";
+import { toast } from "./ui/use-toast";
 
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 export default function CreateCollectionSheet({ open, onOpenChange }: Props) {
+  const router = useRouter();
+
   const form = useForm<createCollectionSchemaType>({
     defaultValues: {},
     resolver: zodResolver(createCollectionSchema),
   });
 
+  const resetFormHandler = (open: boolean) => {
+    form.reset();
+    onOpenChange(open);
+    router.refresh();
+  };
+
   const onSubmit = async (data: createCollectionSchemaType) => {
     try {
       await createCollection(data);
-    } catch (error) {
-      alert(error);
+
+      //reset form
+      resetFormHandler(false);
+      toast({
+        title: "Success",
+        description: "Collection created successfully!",
+      });
+    } catch (e: any) {
+      console.log(e);
+      //toast error
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
     }
   };
 
