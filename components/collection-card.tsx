@@ -81,11 +81,11 @@ function CollectionCard({ collection }: Props) {
           <Button
             variant={"ghost"}
             className={cn(
-              "flex w-full justify-between p-6",
+              "flex w-full justify-between p-6 border shadow-lg",
               isOpen && "rounded-b-none"
             )}
           >
-            <span className="text-white font-bold">{collection.name}</span>
+            <span className="font-bold">{collection.name}</span>
             {!isOpen && <CaretDownIcon className="h-6 w-6" />}
             {isOpen && <CaretUpIcon className="h-6 w-6" />}
           </Button>
@@ -98,7 +98,11 @@ function CollectionCard({ collection }: Props) {
               onClick={() => setShowCreateModal(true)}
             >
               <p>There are no tasks yet:</p>
-              Create one
+              <span>
+                <Button variant="link" className="p-0">
+                  Create one
+                </Button>
+              </span>
             </Button>
           )}
           {tasks.length > 0 && (

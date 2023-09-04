@@ -21,17 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
-      key={process.env.CLERK_SECRET_KEY!}
-    >
+    <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Toaster />
             <Navbar />
             <Separator />
-            <main className="min-h-screen p-5">{children}</main>
+            <main className="min-h-screen p-5 flex justify-center">
+              {children}
+            </main>
             <Separator />
             <Footer />
           </ThemeProvider>

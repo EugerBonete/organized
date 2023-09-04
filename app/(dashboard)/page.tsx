@@ -8,7 +8,7 @@ import { currentUser } from "@clerk/nextjs";
 
 export default async function Home() {
   return (
-    <div className="flex gap-10 items-start">
+    <div className="flex gap-10 items-start w-full">
       <WelcomeMsg />
       <CollectionList />
     </div>

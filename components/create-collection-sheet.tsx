@@ -116,12 +116,7 @@ export default function CreateCollectionSheet({ open, onOpenChange }: Props) {
                     <Select
                       onValueChange={(color: string) => field.onChange(color)}
                     >
-                      <SelectTrigger
-                        className={cn(
-                          "w-full h-8 text-white",
-                          GoalTypes[field.value as GoalColor]
-                        )}
-                      >
+                      <SelectTrigger className={cn("w-full h-8")}>
                         <SelectValue
                           placeholder="Yearly"
                           className="w-full h-8"
