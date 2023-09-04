@@ -81,8 +81,8 @@ function CollectionCard({ collection }: Props) {
           <Button
             variant={"ghost"}
             className={cn(
-              "flex w-full justify-between p-6 border shadow-lg",
-              isOpen && "rounded-b-none"
+              "flex w-full justify-between p-6 border",
+              isOpen ? "rounded-b-none" : "shadow-lg"
             )}
           >
             <span className="font-bold">{collection.name}</span>
@@ -97,7 +97,7 @@ function CollectionCard({ collection }: Props) {
               className="flex items-center justify-center gap-1 p-8 py-12 rounded-none"
               onClick={() => setShowCreateModal(true)}
             >
-              <p>There are no tasks yet:</p>
+              <p>There are no goals yet:</p>
               <span>
                 <Button variant="link" className="p-0">
                   Create one
@@ -117,6 +117,7 @@ function CollectionCard({ collection }: Props) {
           )}
           <Separator />
           <footer className="h-[40px] px-4 p-[2px] text-xs text-neutral-500 flex justify-between items-center ">
+            <span className="font-bold">Type : {collection.type}</span>
             <p>Created at {collection.createdAt.toLocaleDateString("en-US")}</p>
             {isLoading && <div>Deleting...</div>}
             {!isLoading && (

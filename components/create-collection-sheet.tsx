@@ -99,8 +99,10 @@ export default function CreateCollectionSheet({ open, onOpenChange }: Props) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
-                  <Input placeholder="" {...field} />
-                  <FormDescription>Name your goal / target</FormDescription>
+                  <Input placeholder="e.g. buy groceries" {...field} />
+                  <FormDescription>
+                    Name your collection or goals
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -111,14 +113,14 @@ export default function CreateCollectionSheet({ open, onOpenChange }: Props) {
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>Duration</FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={(color: string) => field.onChange(color)}
                     >
                       <SelectTrigger className={cn("w-full h-8")}>
                         <SelectValue
-                          placeholder="Yearly"
+                          placeholder="Select a value"
                           className="w-full h-8"
                         />
                       </SelectTrigger>
@@ -132,7 +134,7 @@ export default function CreateCollectionSheet({ open, onOpenChange }: Props) {
                     </Select>
                   </FormControl>
                   <FormDescription>
-                    Select how long your goal should end.
+                    Select how long it should take.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
