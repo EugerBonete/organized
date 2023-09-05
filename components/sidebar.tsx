@@ -58,11 +58,18 @@ interface IndicatorProps {
 }
 
 const Indicator = ({ title }: IndicatorProps) => {
+  const cardColor =
+    title === "monthly"
+      ? "bg-gradient-to-r from-red-500 to-orange-500"
+      : title === "daily"
+      ? "bg-gradient-to-r from-rose-400 to-red-500"
+      : "bg-gradient-to-r from-violet-500 to-purple-500";
+
   const path = usePathname();
 
   return (
     <div className="flex items-center gap-2 rounded-md px-3 py-2 text-xs text-muted-foreground font-medium">
-      <span className={cn("h-5 w-5 rounded-full", CardColor(title))}></span>
+      <span className={cn("h-5 w-5 rounded-full", cardColor)}></span>
       {capitalizeFirstLetter(title)}
     </div>
   );

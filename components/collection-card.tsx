@@ -69,6 +69,13 @@ function CollectionCard({ collection }: Props) {
 
   const progress = totalTasks === 0 ? 0 : (tasksDone / totalTasks) * 100;
 
+  const cardColor =
+    collection.type === "monthly"
+      ? "bg-gradient-to-r from-red-500 to-orange-500"
+      : collection.type === "daily"
+      ? "bg-gradient-to-r from-rose-400 to-red-500"
+      : "bg-gradient-to-r from-violet-500 to-purple-500";
+
   return (
     <>
       <CreateTaskDialog
@@ -83,7 +90,7 @@ function CollectionCard({ collection }: Props) {
             variant={"ghost"}
             className={cn(
               "flex w-full justify-between p-6 border",
-              CardColor(collection.type),
+              cardColor,
               isOpen ? "rounded-b-none" : "shadow-lg"
             )}
           >
