@@ -73,7 +73,7 @@ function CollectionCard({ collection }: Props) {
     collection.type === "monthly"
       ? "bg-gradient-to-r from-red-500 to-orange-500"
       : collection.type === "daily"
-      ? "bg-gradient-to-r from-rose-400 to-red-500"
+      ? "bg-gradient-to-r from-green-400 to-green-300"
       : "bg-gradient-to-r from-violet-500 to-purple-500";
 
   return (
