@@ -8,14 +8,14 @@ import Footer from "@/components/footer";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Organizify",
   description: "Organize and schedule your tasks.",
-  icons: {
-    icon: "/calendar.svg",
-  },
 };
 
 export default function RootLayout({
