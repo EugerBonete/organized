@@ -11,8 +11,11 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Organized",
-  description: "Organize and schedule your time.",
+  title: "Organizify",
+  description: "Organize and schedule your tasks.",
+  icons: {
+    icon: "/calendar.svg",
+  },
 };
 
 export default function RootLayout({

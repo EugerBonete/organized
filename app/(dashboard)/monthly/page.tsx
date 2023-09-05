@@ -4,8 +4,14 @@ import SadFace from "@/components/icons/sad-face";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
+import { Metadata } from "next";
 
-export default async function Home() {
+export const metadata: Metadata = {
+  title: "Organizify | Monthly",
+  description: "Organize and schedule your tasks.",
+};
+
+export default async function Monthly() {
   const user = await currentUser();
   if (!user) {
     return null;
