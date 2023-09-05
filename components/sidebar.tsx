@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { capitalizeFirstLetter, cn } from "@/lib/utils";
+import { CardColor, capitalizeFirstLetter, cn } from "@/lib/utils";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,13 @@ export default function Sidebar() {
         <SidebarItem title="Monthly" url="/monthly" />
         <SidebarItem title="Yearly" url="/yearly" />
         <SidebarItem title="All" url="/" />
+      </div>
+
+      <h1 className="text-sm">Legend</h1>
+      <div className="flex md:flex-col gap-2">
+        <Indicator title="daily" />
+        <Indicator title="monthly" />
+        <Indicator title="yearly" />
       </div>
     </div>
   );
@@ -43,5 +50,20 @@ const SidebarItem = ({ url, title }: SidebarItemProps) => {
     >
       {capitalizeFirstLetter(title)}
     </Link>
+  );
+};
+
+interface IndicatorProps {
+  title: string;
+}
+
+const Indicator = ({ title }: IndicatorProps) => {
+  const path = usePathname();
+
+  return (
+    <div className="flex items-center gap-2 rounded-md px-3 py-2 text-xs text-muted-foreground font-medium">
+      <span className={cn("h-5 w-5 rounded-full", CardColor(title))}></span>
+      {capitalizeFirstLetter(title)}
+    </div>
   );
 };

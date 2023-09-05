@@ -7,7 +7,7 @@ import {
   CollapsibleTrigger,
 } from "./ui/collapsible";
 import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
+import { CardColor, cn } from "@/lib/utils";
 import { CaretDownIcon, CaretUpIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Progress } from "./ui/progress";
 import { Separator } from "./ui/separator";
@@ -68,6 +68,7 @@ function CollectionCard({ collection }: Props) {
   const totalTasks = collection.task.length;
 
   const progress = totalTasks === 0 ? 0 : (tasksDone / totalTasks) * 100;
+
   return (
     <>
       <CreateTaskDialog
@@ -82,10 +83,11 @@ function CollectionCard({ collection }: Props) {
             variant={"ghost"}
             className={cn(
               "flex w-full justify-between p-6 border",
+              CardColor(collection.type),
               isOpen ? "rounded-b-none" : "shadow-lg"
             )}
           >
-            <span className="font-bold">{collection.name}</span>
+            <span className="text-white font-bold">{collection.name}</span>
             {!isOpen && <CaretDownIcon className="h-6 w-6" />}
             {isOpen && <CaretUpIcon className="h-6 w-6" />}
           </Button>

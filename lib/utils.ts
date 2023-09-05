@@ -32,8 +32,10 @@ export const getDaysBetweenDates = (dateOne: Date, dateTwo: Date): number => {
   return convertMsToDays(differenceInMs);
 };
 
-const dateOne = new Date("01/01/2021"); // MM/DD/YYYY
-const dateTwo = new Date("01/11/2021"); // MM/DD/YYYY
-
-const daysBetweenDates = getDaysBetweenDates(dateOne, dateTwo);
-console.log(daysBetweenDates); // 10
+export const CardColor = (title: string) => {
+  return title === "monthly"
+    ? "bg-gradient-to-r from-red-500 to-orange-500"
+    : title === "daily"
+    ? "bg-gradient-to-r from-rose-400 to-red-500"
+    : "bg-gradient-to-r from-violet-500 to-purple-500";
+};
