@@ -7,7 +7,6 @@ import {
   CollapsibleTrigger,
 } from "./ui/collapsible";
 import { Button } from "./ui/button";
-import { CardColor, cn } from "@/lib/utils";
 import { CaretDownIcon, CaretUpIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Progress } from "./ui/progress";
 import { Separator } from "./ui/separator";
@@ -27,6 +26,7 @@ import { useRouter } from "next/navigation";
 import CreateTaskDialog from "./create-task";
 import TaskCard from "./task-card";
 import Plus from "./icons/plus";
+import { cn } from "@/lib/utils";
 
 interface Props {
   collection: Collection & {

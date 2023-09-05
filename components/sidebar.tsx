@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { CardColor, capitalizeFirstLetter, cn } from "@/lib/utils";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
