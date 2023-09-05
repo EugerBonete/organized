@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <nav className="flex justify-between items-center p-5">
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center text-xs sm:text-sm">
         <ModeToggle />
         <p>
           Built by{" "}
@@ -19,8 +19,6 @@ export default function Footer() {
           </Link>
         </p>
       </div>
-
-      <Logo />
     </nav>
   );
 }
