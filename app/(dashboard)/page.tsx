@@ -37,7 +37,7 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col items-start justify-center gap-5">
       <CreateCollection />
-      <div className="flex flex-col gap-4 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
         {collection.map((collection) => (
           <CollectionCard key={collection.id} collection={collection} />
         ))}

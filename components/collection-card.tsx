@@ -103,7 +103,7 @@ function CollectionCard({ collection }: Props) {
           {tasks.length === 0 && (
             <Button
               variant={"ghost"}
-              className="flex items-center justify-center gap-1 p-8 py-12 rounded-none"
+              className="flex items-center flex-col justify-center gap-1 p-8 py-12 rounded-none"
               onClick={() => setShowCreateModal(true)}
             >
               <p>There are no goals yet:</p>
